@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <ng-container *ngIf="type === 'Multiple-choices'">
+    <label id="radio-group-label">{{(question$ | async)}}</label>
+    <mat-radio-group
+      aria-labelledby="radio-group-label"
+      class="radio-check-group"  fxLayout="column" fxLayoutAlign="start"
+      [formGroup]="choiceForm">
+      <mat-radio-button class="radio-check-button" *ngFor="let choice of choices$ | async" [value]="choice.choice">
+        {{choice.choice}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </ng-container>
+  <ng-container *ngIf="type === 'Multiple-response'">
+    <section class="checkobx-section" [formGroup]="choiceForm" >
+      <label>{{(question$ | async)}}</label>
+   <div fxLayout="column" fxLayoutAlign="end"   class="radio-check-group" >
+        <mat-checkbox *ngFor="let choice of choices$ | async" class="radio-check-button"
+                      [value]="choice.choice">   {{choice.choice}}</mat-checkbox>
+   </div>
+    </section>
+  </ng-container>
+</div>

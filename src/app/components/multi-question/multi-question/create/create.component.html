@@ -1,0 +1,27 @@
+<form [formGroup]="responseForm" class="form-wrapper">
+  <mat-form-field class="form-field">
+    <mat-label>Question</mat-label>
+    <textarea formControlName="question" matInput  rows="3"></textarea>
+  </mat-form-field>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+  <ng-container formArrayName="choices">
+    <div *ngFor="let choice of choices().controls; let i=index" [formGroupName]="i" class="choices" cdkDrag>
+      <mat-form-field class="form-field">
+        <mat-label>{{"Choice " + (i+1)}}</mat-label>
+        <input formControlName="choice" matInput [id]="'choice' + i">
+        <button type="button" mat-icon-button matSuffix cdkDragHandle>
+          <mat-icon >menu</mat-icon>
+        </button>
+          <button type="button" mat-icon-button matSuffix>
+          <mat-icon  (click)="deleteChoice(i)">delete</mat-icon>
+          </button>
+      </mat-form-field>
+    </div>
+  </ng-container>
+  </div>
+  <div fxLayoutAlign="center center">
+    <button mat-button color="primary" (click)="newChoice()">Add new choice</button>
+  </div>
+</form>
+
+

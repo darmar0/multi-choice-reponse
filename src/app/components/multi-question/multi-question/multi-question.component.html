@@ -1,0 +1,22 @@
+<div class="wrapper">
+<div class="header" fxLayout="row" fxLayoutAlign="end">
+  <form [formGroup]="choiceForm">
+<mat-form-field class="form-field">
+  <mat-label>Item type</mat-label>
+  <mat-select formControlName="type" id="site" (selectionChange)="onGetChoice()" >
+    <mat-option [value]="option" *ngFor="let option of choices">{{ option }}</mat-option>
+  </mat-select>
+  </mat-form-field>
+  </form>
+</div>
+  <div class="mode" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-tab-group example-stretched-tabs mat-align-tabs="center" class="example-stretched-tabs mat-elevation-z4">
+      <mat-tab label="Create">
+        <app-create [type]="selected"></app-create>
+      </mat-tab>
+      <mat-tab label="View">
+        <app-view [type]="selected"></app-view>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
