@@ -21,7 +21,6 @@ export class CreateComponent implements OnInit, OnDestroy {
   @Input('type') set setType(type: any) {
     this.type = type;
   }
-
   constructor(public fb: FormBuilder,
               public service: MultiQuestionService
   ) {
